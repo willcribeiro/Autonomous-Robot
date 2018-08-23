@@ -2,17 +2,17 @@ from hcsr04 import HCSR04
 from motorShield import MotorShield
 import time, math, machine
 
+#Definitions
 sensor = HCSR04(trigger_pin=16, echo_pin=0)
-
 servo = machine.PWM(machine.Pin(12), freq=50)
-
 distance = sensor.distance_cm()
-
 rodas = MotorShield()
 rodas.directionRobot(1, 0)
 rodas.vel(900,900)
-print('antes do while')
-i = 30
+
+print('antes do while') #Debugs prints
+i = 30 #Angle
+
 while True:
 
     distance = sensor.distance_cm()
@@ -27,10 +27,10 @@ while True:
             print('distancia',distance2)
             time.sleep(1)
             print(i)
-            i = i + 21
+            i = i + 21 #Increment 30 degrees
 
     else:
         print('entrei')
         rodas.vel(900,900)
-        i = 30
-        servo.duty(72)
+        i = 30 #Reset angle
+        servo.duty(72) #Servo in 90 degrees
