@@ -23,17 +23,30 @@ import time, math, machine
 
     """
 
-sensor = HCSR04(trigger_pin=16, echo_pin=0)
-servo = machine.PWM(machine.Pin(12), freq=50)
-distance = sensor.distance_cm()
 
-i=30
-servo.duty(30)
+def coleta():
 
-while i<136: #Giro do servo
+    sensor = HCSR04(trigger_pin=16, echo_pin=0)
+    servo = machine.PWM(machine.Pin(12), freq=50)
+    distance = sensor.distance_cm()
+
+    i=30
+    servo.duty(30)
+
+    while i<115: #Giro do servo
     
-            servo.duty(i)
-            distance = sensor.distance_cm() #Leitura do sensor
-            print('distancia',distance)
-            time.sleep(1)
-            i = i + 21 #Logica de rotação em 30 gráus
+        servo.duty(i)
+        time.sleep(0.5)
+        distance = sensor.distance_cm() #Leitura do sensor
+        time.sleep(1)
+        if distance>60:
+            print('60,',end='')
+        else:
+            print(distance,',',end='')
+        time.sleep(1)
+        i = i + 14 #Logica de rotação em 30 gráus
+    print(' ')
+    print('---x-----x----')
+    time.sleep(2)
+    
+     
