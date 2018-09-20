@@ -38,15 +38,15 @@ def coleta():
         servo.duty(i)
         time.sleep(0.5)
         distance = sensor.distance_cm() #Leitura do sensor
-        time.sleep(1)
+        time.sleep(0.5)
         if distance>60:
             print('60,',end='')
         else:
             print(distance,',',end='')
-        time.sleep(1)
+        time.sleep(0.5)
         i = i + 14 #Logica de rotação em 30 gráus
     print(' ')
     print('---x-----x----')
-    time.sleep(2)
+    time.sleep(1)
     
      
